@@ -1,0 +1,6 @@
+.pytest_cashe
+.idea
+*iml
+.env
+report
+allure-results
