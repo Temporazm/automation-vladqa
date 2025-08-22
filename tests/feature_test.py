@@ -1,6 +1,7 @@
 import random
 import allure
 import pytest
+import time
 
 from pages.base_test import BaseTest
 
@@ -19,7 +20,7 @@ class TestProfileFeature(BaseTest):
 
         self.dashboard.is_opened() #Проверить
         self.dashboard.click_transfers()
-        
+        time.sleep(5)
         self.transfers.open()
         self.transfers.click_buttom_transfer()
         self.transfers.select_source_account()
