@@ -14,7 +14,7 @@ RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.30-r0/
 RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.30-r0/glibc-bin-2.30-r0.apk
 
 RUN apk update && \
-    apk add openjdk21-jre-headless curl tar && \
+    apk add openjdk11-jre curl tar && \
     curl -o allure-2.34.1.tgz -Ls https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.34.1/allure-commandline-2.34.1.tgz && \
     tar -zxvf allure-2.34.1.tgz -C /opt/ && \
     ln -s /opt/allure-2.34.1/bin/allure /usr/bin/allure && \
