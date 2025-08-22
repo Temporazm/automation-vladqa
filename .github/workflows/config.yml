@@ -24,35 +24,16 @@ jobs:
 
       - name: Copy history from gh-pages to allure-results
         run: |
-          # Создаем директории (без sudo)
-          mkdir -p allure-results/history
-          mkdir -p .github/gh-pages/history
-          
-          # Копируем историю, если она существует
-          if [ -d ".github/gh-pages/history" ] && [ "$(ls -A .github/gh-pages/history)" ]; then
-            cp -R .github/gh-pages/history/* allure-results/history/
-            echo "History copied successfully"
-          else
-            echo "No history found, starting fresh"
-          fi
+          sudo mkdir -p allure-results/history  # Создает директорию для истории Allure
+          sudo cp -R ./.github/gh-pages/history/* allure-results/history/
 
       - name: Generate Allure report
         run: |
-          # Запускаем генерацию отчета внутри контейнера
-          docker-compose run regression /bin/sh -c "allure generate allure-results --clean -o allure-report"
+          sudo docker-compose run regression /bin/sh -c "allure generate allure-results --clean -o allure-report"
 
       - name: Update Allure history
         run: |
-          # Создаем целевую директорию
-          mkdir -p .github/gh-pages/history
-          
-          # Копируем новую историю
-          if [ -d "allure-report/history" ]; then
-            cp -R allure-report/history/* .github/gh-pages/history/
-            echo "History updated successfully"
-          else
-            echo "No new history found"
-          fi
+          sudo cp -R allure-report/history/* ./.github/gh-pages/history/
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.5
