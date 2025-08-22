@@ -1,5 +1,8 @@
 FROM python:3.12.0a4-alpine3.17
 
+RUN echo "https://dl-4.alpinelinux.org/alpine/v3.10/main" >> /etc/apk/repositories && \
+    echo "https://dl-4.alpinelinux.org/alpine/v3.10/community" >> /etc/apk/repositories
+
 # install chromedriver
 RUN apk update
 RUN apk add --no-cache chromium chromium-chromedriver tzdata
