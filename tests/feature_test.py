@@ -4,6 +4,7 @@ import pytest
 import time
 
 from pages.base_test import BaseTest
+from conftest import driver
 
 @allure.feature("Profile functionality")
 class TestProfileFeature(BaseTest):
@@ -20,7 +21,7 @@ class TestProfileFeature(BaseTest):
 
         self.dashboard.is_opened() #Проверить
         self.dashboard.click_transfers()
-        time.sleep(5)
+        
         self.transfers.open()
         self.transfers.click_buttom_transfer()
         self.transfers.select_source_account()
@@ -30,6 +31,7 @@ class TestProfileFeature(BaseTest):
         self.transfers.amount_fild(f"{random.randint(1,100)}")
         self.transfers.is_changes_saved()
         self.transfers.button_transfer_money()
+        driver.quit()
         
 
 
