@@ -13,4 +13,4 @@ class DASHBOARD_PAGE(BasePage):
     @allure.step("Go to click_transfers ")
     def click_transfers(self):
         self.wait.until(EC.element_to_be_clickable(self.BUTTON_TRANSFERS)).click()
-        
+         
